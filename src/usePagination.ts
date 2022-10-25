@@ -9,11 +9,15 @@ type UsePaginationResult = [
 ];
 export function usePagination({
     defaultPageSize = 20,
-}: { defaultPageSize?: number } = {}) {
-    const [states, setStates] = useQueryStates({
-        page: queryTypes.integer.withDefault(1),
-        pageSize: queryTypes.integer.withDefault(defaultPageSize),
-    });
+    history,
+}: { defaultPageSize?: number; history?: HistoryOptions } = {}) {
+    const [states, setStates] = useQueryStates(
+        {
+            page: queryTypes.integer.withDefault(1),
+            pageSize: queryTypes.integer.withDefault(defaultPageSize),
+        },
+        { history }
+    );
 
     return [
         {
@@ -21,6 +25,6 @@ export function usePagination({
             limit: states.pageSize,
             offset: states.pageSize * (states.page - 1),
         },
-        setStates
+        setStates,
     ] as UsePaginationResult;
 }
