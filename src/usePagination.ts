@@ -1,11 +1,8 @@
-import { HistoryOptions, queryTypes, TransitionOptions, useQueryStates } from "next-query-state";
+import { HistoryOptions, queryTypes, UpdateOptions, useQueryStates } from "next-query-state";
 
 type UsePaginationResult = [
     { page: number; pageSize: number; limit: number; offset: number },
-    (
-        payload: { page?: number; pageSize?: number },
-        options?: { history?: HistoryOptions } & TransitionOptions // TODO
-    ) => void
+    (payload: { page?: number; pageSize?: number }, options?: UpdateOptions) => void
 ];
 export function usePagination({
     defaultPageSize = 20,
