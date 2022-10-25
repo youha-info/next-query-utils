@@ -1,14 +1,11 @@
 import { HistoryOptions, queryTypes, UpdateOptions, useQueryStates } from "next-query-state";
+import { getNewPageNumberOnPageSizeChange } from "./helpers";
 
-type UsePaginationResult = [
-    { page: number; pageSize: number; limit: number; offset: number },
-    (payload: { page?: number; pageSize?: number }, options?: UpdateOptions) => void
-];
 export function usePagination({
     defaultPageSize = 20,
     history,
 }: { defaultPageSize?: number; history?: HistoryOptions } = {}) {
-    const [states, setStates] = useQueryStates(
+    const [pagination, setPagination] = useQueryStates(
         {
             page: queryTypes.integer.withDefault(1),
             pageSize: queryTypes.integer.withDefault(defaultPageSize),
@@ -16,12 +13,26 @@ export function usePagination({
         { history }
     );
 
+    const changePageSize = (newPageSize: number, options?: UpdateOptions) =>
+        setPagination(
+            {
+                page: getNewPageNumberOnPageSizeChange(
+                    pagination.page,
+                    pagination.pageSize,
+                    newPageSize
+                ),
+                pageSize: newPageSize,
+            },
+            options
+        );
+
     return [
         {
-            ...states,
-            limit: states.pageSize,
-            offset: states.pageSize * (states.page - 1),
-        },
-        setStates,
-    ] as UsePaginationResult;
+            ...pagination,
+            limit: pagination.pageSize,
+            offset: pagination.pageSize * (pagination.page - 1),
+        } as { page: number; pageSize: number; limit: number; offset: number },
+        setPagination,
+        changePageSize,
+    ] as const;
 }
