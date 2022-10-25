@@ -337,10 +337,10 @@ next-batch-router@^0.0.2:
   resolved "https://registry.yarnpkg.com/next-batch-router/-/next-batch-router-0.0.2.tgz#594504b1794d0977ca681d5aad555aca0b02de5b"
   integrity sha512-Zq04iyVtw6Jm+R0kIUpRZ/+O6J5K/rYsh9Y2CxUl/kZYGIbda0OT+6naVDr7fF2ovL01KGRqdvwh0H/lBzYGJQ==
 
-next-query-state@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/next-query-state/-/next-query-state-0.0.1.tgz#1588dc41fa65b2df3d1b32be81b779945f434b75"
-  integrity sha512-8wHhz8M6ijLmiRgys152zHTY8JqVt+ZKLMsUSIioM+SmSM9LzieXRO1nV8wrCin8GQipnLRLteIlxkiIIyTYNA==
+next-query-state@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/next-query-state/-/next-query-state-0.0.2.tgz#28a12282f227aeca7d4a1c3a3300bd750945a208"
+  integrity sha512-ml9d6H/5mkz9dwlqY/C2qnoyz9WOu3Y6uXxvSCNHxQKhBek55/keERz6pEyAntKFPhfJDjq1FYtYjVGU/F5+lA==
   dependencies:
     next-batch-router "^0.0.2"
 
