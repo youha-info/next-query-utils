@@ -120,9 +120,9 @@
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
 "@types/node@^18.0.6":
-  version "18.11.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.3.tgz#78a6d7ec962b596fc2d2ec102c4dd3ef073fea6a"
-  integrity sha512-fNjDQzzOsZeKZu5NATgXUPsaFaTxeRgFXoosrHivTl8RGeV733OLawXsGfEk9a8/tySyZUyiZ6E8LcjPFZ2y1A==
+  version "18.11.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.5.tgz#1bc94cf2f9ab5fe33353bc7c79c797dcc5325bef"
+  integrity sha512-3JRwhbjI+cHLAkUorhf8RnqUbFXajvzX4q6fMn5JwkgtuwfYtRQYI3u4V92vI6NJuTsbBQWWh3RZjFsuevyMGQ==
 
 "@types/prop-types@*":
   version "15.7.5"
@@ -130,9 +130,9 @@
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
 "@types/react@^18.0.15":
-  version "18.0.21"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.21.tgz#b8209e9626bb00a34c76f55482697edd2b43cc67"
-  integrity sha512-7QUCOxvFgnD5Jk8ZKlUAhVcRj7GuJRjnjjiY/IUBWKgOlnvDvTMLD4RTF7NPyVmbRhNrbomZiOepg7M/2Kj1mA==
+  version "18.0.23"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.23.tgz#4190ecd58b99fa79fe2e67832bdcb287e5f893e4"
+  integrity sha512-R1wTULtCiJkudAN2DJGoYYySbGtOdzZyUWAACYinKdiQC8auxso4kLDUhQ7AJ2kh3F6A6z4v69U6tNY39hihVQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -157,9 +157,9 @@ brace-expansion@^1.1.7:
     concat-map "0.0.1"
 
 caniuse-lite@^1.0.30001406:
-  version "1.0.30001422"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001422.tgz#f2d7c6202c49a8359e6e35add894d88ef93edba1"
-  integrity sha512-hSesn02u1QacQHhaxl/kNMZwqVG35Sz/8DgvmgedxSH8z9UUpcDYSPYgsj3x5dQNRcNp6BwpSfQfVzYUTm+fog==
+  version "1.0.30001425"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001425.tgz#52917791a453eb3265143d2cd08d80629e82c735"
+  integrity sha512-/pzFv0OmNG6W0ym80P3NtapU0QEiDS3VuYAZMGoLLqiC7f6FJFe1MjpQDREGApeenD9wloeytmVDj+JLXPC6qw==
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -332,17 +332,17 @@ nanoid@^3.3.4:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
 
-next-batch-router@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/next-batch-router/-/next-batch-router-0.0.2.tgz#594504b1794d0977ca681d5aad555aca0b02de5b"
-  integrity sha512-Zq04iyVtw6Jm+R0kIUpRZ/+O6J5K/rYsh9Y2CxUl/kZYGIbda0OT+6naVDr7fF2ovL01KGRqdvwh0H/lBzYGJQ==
+next-batch-router@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/next-batch-router/-/next-batch-router-0.0.3.tgz#8ec14286c49cb92d414d92a5d55af654c3084b1f"
+  integrity sha512-E4ktXgCL5j+FhOkm1Jq7V+QGFvMvvCsFKiVCYplvddh4MOhH23zfQWe5+K1ZLcfSAQG7KL0nUzo7ogiVwkXZ5A==
 
-next-query-state@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/next-query-state/-/next-query-state-0.0.2.tgz#28a12282f227aeca7d4a1c3a3300bd750945a208"
-  integrity sha512-ml9d6H/5mkz9dwlqY/C2qnoyz9WOu3Y6uXxvSCNHxQKhBek55/keERz6pEyAntKFPhfJDjq1FYtYjVGU/F5+lA==
+next-query-state@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/next-query-state/-/next-query-state-0.0.6.tgz#9166c8759bafb4138f6daa0a5488053c169d0276"
+  integrity sha512-fQ6WvfqlX9f7gKdtiJBkNohFGYagmcvUROcqgIAXkR+JCXTy3wYZpOrqmsXzXa+KsHUDeOP77uNf8KaXa/qrHQ==
   dependencies:
-    next-batch-router "^0.0.2"
+    next-batch-router "^0.0.3"
 
 next@^12.2.2:
   version "12.3.1"

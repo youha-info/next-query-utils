@@ -1,7 +1,8 @@
 {
   "name": "@youha-info/next-query-utils",
   "version": "0.0.1",
-  "repository": "git@github.com:youha-info/next-query-utils.git",
+  "description": "Youha specific utilities for using next-query-state to persist page's current state in the URL.",
+  "repository": "https://github.com/youha-info/next-query-state",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/youha-info/next-query-utils/issues"
@@ -14,7 +15,7 @@
   },
   "main": "./dist/cjs/index.js",
   "module": "./dist/es/index.js",
-  "types": "./dist/cjs/index.d.ts",
+  "types": "./dist/dts/index.d.ts",
   "exports": {
     "require": "./dist/cjs/index.js",
     "import": "./dist/es/index.js",
@@ -24,16 +25,14 @@
     "dist"
   ],
   "peerDependencies": {
-    "next": "*",
-    "next-query-state": "^0.0.2",
-    "react": ">=16.8"
+    "next-query-state": "^0.0.6"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.1",
     "@types/node": "^18.0.6",
     "@types/react": "^18.0.15",
     "next": "^12.2.2",
-    "next-query-state": "^0.0.2",
+    "next-query-state": "^0.0.6",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
