@@ -1,4 +1,5 @@
 import { queryTypes, Serializers } from "next-query-state";
+import { nullableQueryTypes } from "next-query-state/nullableQueryTypes";
 import { FilterDef } from "./useFilter";
 
 /*
@@ -7,7 +8,7 @@ filterTypes.enum("a","b","c").in()
 filterTypes.number.range()
 */
 
-type FilterTypeParams = { queryType: Serializers<any> };
+type FilterTypeParams = { queryType: Serializers<any>; nullable?: boolean };
 
 interface FilterGenerator {
     generate(key: string): FilterDef;
@@ -15,10 +16,13 @@ interface FilterGenerator {
 
 type BehaviorSelector = Readonly<{
     equal(): FilterTypeParams & FilterGenerator;
-    in(): FilterTypeParams & FilterGenerator;
+    in(options?: InOptions): FilterTypeParams & FilterGenerator;
     range(options?: RangeOptions): FilterTypeParams & FilterGenerator;
 }>;
 
+type InOptions = {
+    delimiter?: string;
+};
 type RangeOptions = {
     excludeNull?: boolean;
 };
@@ -28,22 +32,33 @@ const selectBehavior: BehaviorSelector = {
         return {
             ...this,
             generate(key: string) {
-                const { queryType } = this as FilterTypeParams;
+                const { queryType, nullable } = this as FilterTypeParams;
                 return {
                     queryTypes: { [key]: queryType },
-                    transform: (states: any) => (states[key] !== undefined ? [[key, "=", states[key]]] : []),
+                    transform: (states: any) =>
+                        states[key] !== (nullable ? undefined : null)
+                            ? [[key, "=", states[key]]]
+                            : [],
                 };
             },
         } as unknown as FilterTypeParams & FilterGenerator;
     },
-    in() {
+    in({ delimiter } = {}) {
         return {
             ...this,
             generate(key: string) {
-                const { queryType } = this as FilterTypeParams;
+                const { queryType, nullable } = this as FilterTypeParams;
+                const qTypes = nullable ? nullableQueryTypes : queryTypes;
                 return {
-                    queryTypes: { [key]: queryTypes.array(queryType) },
-                    transform: (states: any) => (states[key] !== undefined ? [[key, "=", states[key]]] : []),
+                    queryTypes: {
+                        [key]: delimiter
+                            ? qTypes.delimitedArray(queryType, delimiter)
+                            : qTypes.array(queryType),
+                    },
+                    transform: (states: any) =>
+                        states[key] !== (nullable ? undefined : null)
+                            ? [[key, "=", states[key]]]
+                            : [],
                 };
             },
         } as unknown as FilterTypeParams & FilterGenerator;
@@ -52,16 +67,18 @@ const selectBehavior: BehaviorSelector = {
         return {
             ...this,
             generate(key: string) {
-                const { queryType } = this as FilterTypeParams;
+                const { queryType, nullable } = this as FilterTypeParams;
                 return {
                     queryTypes: { [key + "Max"]: queryType, [key + "Min"]: queryType },
                     transform: (states: any) => {
                         const result = [];
                         const max = states[key + "Max"];
                         const min = states[key + "Min"];
-                        if (max !== undefined) result.push([key, "<=", max]);
-                        if (min !== undefined) result.push([key, ">=", min]);
-                        if (excludeNull && (min != undefined || max != undefined)) result.push([key, "!=", null]);
+                        const nonValue = nullable ? undefined : null;
+                        if (max !== nonValue) result.push([key, "<=", max]);
+                        if (min !== nonValue) result.push([key, ">=", min]);
+                        if (excludeNull && (min != null || max != null))
+                            result.push([key, "!=", null]);
                         return result;
                     },
                 };
@@ -70,13 +87,15 @@ const selectBehavior: BehaviorSelector = {
     },
 };
 
-type FilterTypeSelector = Readonly<
+type FilterTypeSelectorBase = Readonly<
     {
         [Key in "string" | "float" | "integer" | "boolean"]: BehaviorSelector;
     } & {
         enum: (values: string[]) => BehaviorSelector;
     }
 >;
+
+type FilterTypeSelector = FilterTypeSelectorBase & { nullable: FilterTypeSelectorBase };
 
 export const filterTypes = {
     string: {
@@ -100,6 +119,35 @@ export const filterTypes = {
             queryType: queryTypes.stringEnum(values),
             ...selectBehavior,
         };
+    },
+    nullable: {
+        string: {
+            queryType: nullableQueryTypes.string,
+            nullable: true,
+            ...selectBehavior,
+        },
+        float: {
+            queryType: nullableQueryTypes.float,
+            nullable: true,
+            ...selectBehavior,
+        },
+        integer: {
+            queryType: nullableQueryTypes.integer,
+            nullable: true,
+            ...selectBehavior,
+        },
+        boolean: {
+            queryType: nullableQueryTypes.boolean,
+            nullable: true,
+            ...selectBehavior,
+        },
+        enum(values: string[]) {
+            return {
+                queryType: nullableQueryTypes.stringEnum(values),
+                nullable: true,
+                ...selectBehavior,
+            };
+        },
     },
 } as FilterTypeSelector;
 
