@@ -1,4 +1,4 @@
-# @youha-info/next-query-utils
+# @youha-eng/next-query-utils
 
 Youha specific utilities for using [next-query-state](https://github.com/youha-info/next-query-state) to persist page's current state in the URL.
 
@@ -7,9 +7,9 @@ Contains code specific for Youha's API (`useFilter`).
 ## Installation
 
 ```sh
-$ yarn add @youha-info/next-query-utils next-query-state
+$ yarn add @youha-eng/next-query-utils next-query-state
 or
-$ npm install @youha-info/next-query-utils next-query-state
+$ npm install @youha-eng/next-query-utils next-query-state
 ```
 
 ## Documentation
