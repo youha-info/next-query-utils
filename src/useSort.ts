@@ -1,32 +1,48 @@
 import { queryTypes, Serializers, useQueryState } from "next-query-state";
-
-// TODO
-export function firstParam(v: string | string[]): string;
-export function firstParam(v: string | string[] | undefined): string | undefined;
-export function firstParam(v: string | string[] | undefined): string | undefined {
-    return Array.isArray(v) ? v[0] : v;
-}
-
-// TODO: validation 통해 맞는것만 가야 할지, +는 인코딩되니 url에서는 뺄지 등등
+import { useMemo } from "react";
 
 export type SortType = `${"+" | "-"}${string}`;
 
-const sortSerealizer: Serializers<SortType | null> = {
+const sortSerializer: (
+    allowed: string[] | undefined,
+    showPlus?: boolean
+) => Serializers<SortType | null> = (allowed, showPlus = false) => ({
     parse: (v) => {
-        const str = firstParam(v);
-        return ["+", "-"].includes(str?.charAt(0) ?? "") ? (str as SortType) : null;
+        const sort = (["+", "-"].includes((v as string)[0]) ? v : `+${v}`) as SortType;
+        if (allowed && !allowed.includes(sort)) return null;
+        return sort;
     },
-    serialize: (v) => `${v}`,
-};
+    serialize: showPlus ? (v) => v : (v) => (v !== null && v[0] === "+" ? v.slice(1) : v),
+});
 
 type UseSortOptions = {
     defaultSort?: SortType[];
+    allowed?: string[];
+    /** Can `defaultSort` and `allowed` be changed after first render? Defaults to `false`.  */
+    dynamic?: boolean;
+    /** Show '+' in URL. Defaults to false, and '+' character is omitted in URL. */
+    showPlus?: boolean;
 } & Parameters<typeof useQueryState>[2];
 
-export function useSort({ defaultSort = [], ...options }: UseSortOptions = {}) {
-    return useQueryState(
-        "sort",
-        queryTypes.array(sortSerealizer).withDefault(defaultSort),
-        options
+export function useSort({ defaultSort = [], allowed, showPlus, ...options }: UseSortOptions = {}) {
+    const serializer = useMemo(
+        () =>
+            queryTypes
+                .delimitedArray(
+                    sortSerializer(allowed && generateAvailableSort(allowed), showPlus),
+                    "_"
+                )
+                .withDefault(defaultSort),
+        options.dynamic ? [allowed?.join(), defaultSort.join()] : [null, null]
     );
+
+    return useQueryState("sort", serializer, options);
+}
+
+function generateAvailableSort(allowed: string[]) {
+    const res = [];
+    for (const field of allowed)
+        if (field[0] === "+" || field[0] === "-") res.push(field);
+        else res.push(`+${field}`, `-${field}`);
+    return res;
 }
