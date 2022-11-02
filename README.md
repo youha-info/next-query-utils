@@ -60,6 +60,8 @@ Utility hook for sort state control.
 -   Returned value always starts with '+' or '-'.
 -   Allowed values can be set with `allowed` parameter. '+' or '-' prefix only allows that sort direction, and no prefix allows both '+' and '-'.
 -   `showPlus` option is for showing '+' in the URL or not. No prefix implies ascending order. Default is false because '+' gets percent encoded and makes URL look dirty in current implementation.
+-   `delimiter` option sets which delimiter to use for separating sort strings. Set to null for using duplicate keys instead of 
+    delimited string. Defaults to "_".
 -   By default, `defaultSort` and `allowed` must not be changed. Set `dynamic` option to `true` to change those.
 
 ```jsx
@@ -68,6 +70,7 @@ const [sort, setSort] = useSort({
     allowed: ["fieldB", "+fieldA"],
     history: "push",
     showPlus: true,
+    delimiter: "_",
 });
 
 return (
