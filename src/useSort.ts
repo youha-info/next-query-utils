@@ -18,7 +18,7 @@ const sortSerializer: (
 type UseSortOptions = {
     defaultSort?: SortType[];
     allowed?: string[];
-    /** Can `defaultSort` and `allowed` be changed after first render? Defaults to `false`.  */
+    /** Can options be changed after first render? Defaults to `false`.  */
     dynamic?: boolean;
     /** Show '+' in URL. Defaults to false, and '+' character is omitted in URL. */
     showPlus?: boolean;
@@ -45,7 +45,9 @@ export function useSort({
                 : queryTypes
                       .array(sortSerializer(allowed && generateAvailableSort(allowed), showPlus))
                       .withDefault(defaultSort),
-        options.dynamic ? [allowed?.join(), defaultSort.join()] : [null, null]
+        options.dynamic
+            ? [allowed?.join(), defaultSort.join(), showPlus, delimiter]
+            : [null, null, showPlus, delimiter]
     );
 
     return useQueryState("sort", serializer, options);
