@@ -22,17 +22,29 @@ type UseSortOptions = {
     dynamic?: boolean;
     /** Show '+' in URL. Defaults to false, and '+' character is omitted in URL. */
     showPlus?: boolean;
+    /** Delimiter to use for multiple sort items */
+    delimiter?: string | null;
 } & Parameters<typeof useQueryState>[2];
 
-export function useSort({ defaultSort = [], allowed, showPlus, ...options }: UseSortOptions = {}) {
+export function useSort({
+    defaultSort = [],
+    allowed,
+    showPlus,
+    delimiter = "_",
+    ...options
+}: UseSortOptions = {}) {
     const serializer = useMemo(
         () =>
-            queryTypes
-                .delimitedArray(
-                    sortSerializer(allowed && generateAvailableSort(allowed), showPlus),
-                    "_"
-                )
-                .withDefault(defaultSort),
+            delimiter
+                ? queryTypes
+                      .delimitedArray(
+                          sortSerializer(allowed && generateAvailableSort(allowed), showPlus),
+                          delimiter
+                      )
+                      .withDefault(defaultSort)
+                : queryTypes
+                      .array(sortSerializer(allowed && generateAvailableSort(allowed), showPlus))
+                      .withDefault(defaultSort),
         options.dynamic ? [allowed?.join(), defaultSort.join()] : [null, null]
     );
 
