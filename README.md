@@ -1,4 +1,7 @@
 # @youha-eng/next-query-utils
+[![NPM](https://img.shields.io/npm/v/@youha-eng/next-query-utils?color=red)](https://www.npmjs.com/package/@youha-eng/next-query-utils)
+[![Bundle size](https://img.shields.io/bundlephobia/minzip/@youha-eng/next-query-utils)](https://bundlephobia.com/package/@youha-eng/next-query-utils)
+[![GitHub license](https://img.shields.io/github/license/youha-info/next-query-utils)](https://github.com/youha-info/next-query-utils/blob/main/LICENSE)
 
 Youha specific utilities for using [next-query-state](https://github.com/youha-info/next-query-state) to persist page's current state in the URL.
 
