@@ -332,17 +332,17 @@ nanoid@^3.3.4:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
 
-next-batch-router@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/next-batch-router/-/next-batch-router-0.0.3.tgz#8ec14286c49cb92d414d92a5d55af654c3084b1f"
-  integrity sha512-E4ktXgCL5j+FhOkm1Jq7V+QGFvMvvCsFKiVCYplvddh4MOhH23zfQWe5+K1ZLcfSAQG7KL0nUzo7ogiVwkXZ5A==
+next-batch-router@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/next-batch-router/-/next-batch-router-1.0.0.tgz#d8955b840e0f19bccda9f53385cd0331c789aa6f"
+  integrity sha512-muoqNbjAwVhmJR7iXkkETn0wBvvvpazoc4g0hjFK9aaENOy92jESA2/IE+MDDtFUMJF+GY7RfwG9inbAcKGUSw==
 
-next-query-state@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/next-query-state/-/next-query-state-0.0.6.tgz#9166c8759bafb4138f6daa0a5488053c169d0276"
-  integrity sha512-fQ6WvfqlX9f7gKdtiJBkNohFGYagmcvUROcqgIAXkR+JCXTy3wYZpOrqmsXzXa+KsHUDeOP77uNf8KaXa/qrHQ==
+next-query-state@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/next-query-state/-/next-query-state-1.0.0.tgz#dcaa4bba6a6606f44b769780e6a2e46e486f8cfd"
+  integrity sha512-R2OIZ9PHN3QhHpABjpmzEurZM47lfe9Hh+tx7GHz2VTVrAcZMeXGufgPnK8vJb4trk8Go3Dge2vxtc9XUoxsKg==
   dependencies:
-    next-batch-router "^0.0.3"
+    next-batch-router "^1.0.0"
 
 next@^12.2.2:
   version "12.3.1"
