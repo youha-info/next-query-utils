@@ -1,6 +1,6 @@
 {
   "name": "@youha-eng/next-query-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Youha specific utilities for using next-query-state to persist page's current state in the URL.",
   "repository": "https://github.com/youha-info/next-query-utils",
   "license": "MIT",
